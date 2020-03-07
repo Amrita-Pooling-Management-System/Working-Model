@@ -1,0 +1,24 @@
+{% load static %}
+<html>
+  <head>
+	  <title>Sign In</title>
+	  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+	  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+	   <link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}">	
+  </head>
+  <body>
+  	<div>
+	  <h1 class="green-bk">SignIn Form</h1>
+	  <h4 style="color:red;text-align:center;">{{err}}</h4>
+  <form  method="POST" action="" >{%csrf_token%}
+  	<input type="text" placeholder="Username" name="username" class="first" id="username">
+	<input type="Password" placeholder="Password" name="password" id="password"> 
+  <h5 class="forgotpass">Forgot <a href="" class="green-font">Username/Password?</a></h5> 
+	<br></br>
+	<button type="submit" class="green-bk signin" id='login'>SIGN IN</button>
+</form>
+	<h5 id="space"> Don't have an account?</h5>
+	<a href="/signup" ><h5 class="green-font footer">SIGN UP NOW</h5></a>
+   </div>
+  </body>
+</html>

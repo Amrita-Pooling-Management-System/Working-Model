@@ -1,0 +1,87 @@
+body{
+	background-color: #D2CECE;
+}
+
+div{
+	text-align: center;
+    margin: 0 auto;
+    width:410px;  
+	background-color: white;
+	border-radius: 15px;
+
+}
+
+a{
+	text-decoration: none;
+}
+
+input
+{
+    margin: 7px;
+    margin-left: 0; 
+    padding: 14px 104px 14px 27px;
+    background-color: #D2CECE;
+    border: green;
+    border-radius: 21px;
+}
+
+h1{
+	border: green;
+    border-radius: 15px 15px 0px 0px;
+    padding: 43px;
+    font-weight: bold;
+}
+
+h5{
+	color: grey;
+}
+
+.green-bk{
+	background-color: #57B846;
+	color:white;
+}
+.green-font{
+	color:#57B846;
+}
+
+.footer{
+    margin-top: 11px;
+    padding-bottom: 32px;
+    font-size: 14px;
+}
+
+.first{
+    margin-top: 20px;
+}
+.signin{
+	margin: 6px;
+    margin-left: 0;    
+    padding: 13px 126px;
+    background-color: #57B846;
+    border: green;
+    border-radius: 21px;
+    font-weight: bold;
+    margin-top: -11px;
+}
+.forgotpass{
+    margin-top: 0px;
+    margin-left: 137px;
+}
+
+#space{
+	margin-bottom: -6px;
+    margin-top: 108px;
+}
+
+::placeholder { 
+  color: black;
+  opacity: 1; 
+}
+
+:-ms-input-placeholder { 
+  color: black;
+}
+
+::-ms-input-placeholder { 
+  color: black;
+}
