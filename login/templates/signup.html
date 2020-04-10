@@ -1,6 +1,14 @@
+{% load static %}
+
 <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-<h2>Sign up</h2>
+ <link rel="stylesheet" type="text/css" href="{% static 'css/signup.css' %}"
+<body>
+  <div class="total">
+  <div class="title">
+    <h1> SignUp Form</h1>
+  </div>
+  <div class="signup">
 <form method="post">
   {% csrf_token %}
   {% for field in form %}
@@ -15,5 +23,8 @@
       {% endfor %}
     </p>
   {% endfor %}
-  <button type="submit">Sign up</button>
+  <button type="submit" class="green-bk signin" style="margin-top: 20px">Sign up</button>
 </form>
+</div>
+</div>
+</body>

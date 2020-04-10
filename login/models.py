@@ -5,12 +5,17 @@ from django.dispatch import receiver
 # Create your models here.
 
 class Profile(models.Model):
+    CATEGORIES = (
+        ('STUD','Student'),
+        ('DRIV','Driver'),
+    )
     user = models.OneToOneField(User,on_delete=models.CASCADE)
     first_name = models.CharField(max_length=100,blank=True)
     last_name = models.CharField(max_length=100,blank=True)
     email = models.CharField(max_length=150)
+    category = models.CharField(max_length=4,choices=CATEGORIES,default='STUD')
+    phone = models.CharField(max_length=10)
     signup_confirmation = models.BooleanField(default= False)
-
     def __str__(self):
         return self.user.username
     
@@ -19,3 +24,37 @@ def update_profile(sender,instance,created, **kwargws):
     if created:
         Profile.objects.create(user=instance)
     instance.profile.save()
+
+class Journey(models.Model):
+    PLACES = (
+        ('VAL','Vallikavu'),
+        ('KYJ','Kayamkulam'),
+        ('KPI','Karunagapalli')
+    )
+    STATUS = (
+        ('DONE','DONE'),
+        ('UPCO','Upcoming'),
+    )
+    profilename = models.ForeignKey(User,on_delete = models.CASCADE)
+    source= models.CharField(max_length=3,choices=PLACES)
+    destination= models.CharField(max_length=3,choices=PLACES)
+    datefield = models.DateField()
+    timefield = models.TimeField()
+    preference= models.IntegerField()
+    status = models.CharField(max_length=4,choices=STATUS)
+
+class Driver(models.Model):
+    CATEGORIES = (
+        ('STUD','Student'),
+        ('DRIV','Driver'),
+    )
+    user = models.OneToOneField(User,on_delete=models.CASCADE)
+    first_name = models.CharField(max_length=100,blank=True)
+    last_name = models.CharField(max_length=100,blank=True)
+    email = models.CharField(max_length=150)
+    category = models.CharField(max_length=4,choices=CATEGORIES,default='STUD')
+    phone = models.CharField(max_length=10)
+    signup_confirmation = models.BooleanField(default= False)
+    def __str__(self):
+        return self.user.username
+    

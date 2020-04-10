@@ -1,5 +1,7 @@
 body{
-	background-color: #D2CECE;
+    background-color: #D2CECE;
+    background: url(car.jpg);
+    background-size: cover;
 }
 
 div{

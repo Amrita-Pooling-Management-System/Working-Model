@@ -1,1 +1,161 @@
-home
+{% load static %}
+
+<!DOCTYPE html>
+<html >
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Personal Dashboard</title>
+  <link href="{% static 'css/style.css' %}" type="text/css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/fontawesome-free-5.8.1-web/css/all.css' %}">
+  <script type="text/javascript" src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/popper.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/mdb.min.js' %}"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+      <a href="#" class="navbar-brand text-warning">&nbsp;&nbsp;
+        <img src="/home/p/Git/Software Project/frontend/taxi-xxl.png" width="50" height="50" alt=""> Amrita Pooling Management System</a>
+        
+      
+      
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+            <a href="/logout" class="nav-link">
+              <i class="fas fa-sign-out-alt"></i> Logout</a>
+          </li>
+        </ul>
+    
+    </nav>
+
+    <div class=" py-3 text-white" style="background-color: teal">
+      <h1>&nbsp;&nbsp;<i class="fas fa-chart-bar"></i> Dashboard</h1>
+    </div>
+    <div class="bg-light p-2">
+
+  </div>
+  <div class="container-fluid">
+    
+    <div class="row"> 
+      <div class="col-9">
+        <h2 style="background-color: grey ;" class="text-white p-3 ">Travel log</h2>
+        <div class="container">
+
+        <table class="table ">
+          <thead class="table-dark">
+            <tr>
+              <th>#</th>
+              <th>Src</th>
+              <th>Dest</th>
+              <th>Time</th>
+              <th>Date Posted</th>
+              <th>Status</th>
+              <th>Deatils</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for jou in journey %}
+            <tr>
+              <td>{{jou.id}}</td>
+              <td>{{jou.source}}</td>
+              <td>{{jou.destination}}</td>
+              <td>{{jou.timefield}}</td>
+              <td>{{jou.datefield}}</td>
+               <td>{{jou.status}}</td> 
+              <td><a href="#details" class="btn bg-warning btn-sm " data-toggle="modal">
+                 check details >>> <i></i>
+              </a></td>
+              <div class="modal fade show" id="details">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                       <div class="modal-header bg-success text-white">
+                          <h3> Complete Trip details </h3>
+                            <span class="colse" data-dismiss="modal">
+                             <i class="fa fa-window-close"></i>
+                            </span>
+                       </div>
+                    <div class="p-4"> <br>Trip on : <br> trip time : <br> from-> to : <br> taxi number : <br >   </div>
+                     <div class="modal-footer">
+                      
+                        <a href="" class="btn btn-success">Ok</a>
+                      </div>
+                   </div>
+                 </div>
+               </div>
+            </tr>
+
+            {% endfor %}
+            
+          </tbody>
+        </table>
+      </div>
+    </div>
+     
+          <div class="card mt-4">
+            <div class=" bg-warning text-white p-4 ">
+              <i class="fas fa-male fa-6x"></i>
+              <h2 class="float-right font-weight-bold" style="font-size: 50px; text-align: center;"> &nbsp<span class="d-block">User details</span></h2>
+            </div>
+            <div class="card-footer ">
+             {% for pro in profile %}
+              <div class="row"> &nbsp;&nbsp;<span>Name: &nbsp;<span name="name" placeholder="name">{{pro.user}}</span></span></div>
+              <div class="row"> &nbsp;&nbsp;<span>Phone:&nbsp;<span name="number" placeholder="number">{{pro.phone}}</span></span></div>
+              <div class="row"> &nbsp;&nbsp;<span>E-Mail:&nbsp;<span name="mail" placeholder="mail">{{pro.email}}</span></span></div>
+            {% endfor %}
+            <br>
+               <a href="#loginModal" class="btn btn-primary d-block font-weight-bold" data-toggle="modal">
+          <i class="fas fa-plus"></i> &nbsp;Add Trip</a>
+
+          <div class="modal fade show" id="loginModal">
+            <div class="modal-dialog">
+             <div class="modal-content">
+               <form  method="POST">
+                {% csrf_token %}
+                 <div class="modal-header bg-success text-white">
+                   <h3>Add Journey </h3>
+                   <span class="colse" data-dismiss="modal">
+                     <i class="fa fa-window-close"></i>
+                   </span>
+                 </div>
+                 <div class="modal-body">
+                   <div class="form-group">
+                     <input type="text" class="form-control" placeholder="Source" name="source">
+                   </div>
+                   <div class="form-group">
+                     <input type="text" class="form-control" placeholder="Destination " name="destination">
+                   </div>
+                   <div class="form-group">
+                    <span>Time:</span> <input type="time" class="form-control" placeholder="time" name="time">
+                   </div>
+                    <div class="form-group">
+                     <input type="date" class="form-control" placeholder="date" name="date">
+                   </div>
+                    <div class="form-group">
+ 
+                     <input type="number" class="form-control" placeholder="number of people (including yourself)" min="1" max="4" name="nopeople">
+                   </div>
+                 </div>
+                 <div class="modal-footer">
+                   <a href="" class="btn " data-dismiss="modal">Close</a>
+                   <button type = "submit" href="" class="btn btn-success">Add Trip</a>
+                 </div>
+               </form>
+               </div>
+             </div>
+           
+              
+            </div>
+          </div>
+      </div> 
+  
+  </div>
+
+
+
+</body>
+
+
+</html>

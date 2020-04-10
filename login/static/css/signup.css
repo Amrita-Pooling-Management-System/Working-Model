@@ -1,0 +1,104 @@
+body{
+    background-color: #D2CECE;
+    background: url(car.jpg);
+    background-size: cover;
+}
+
+.total{
+    background-color: white;
+    margin: 10px auto;
+    width:620px;
+    border-radius: 15px;
+  
+}
+.signup{
+    margin: 10px auto;
+    width:620px;  
+	background-color: white;
+    border-radius: 15px;
+    padding-left: 10px;
+
+}
+.title{
+    margin: 10px auto;
+    width:620px;  
+    border-radius: 15px;
+}
+
+a{
+	text-decoration: none;
+}
+
+.sign-control
+{
+    margin-top: 5px;
+    margin: 7px;
+    margin-left: 10px; }
+
+h1{
+    border: green;
+    background-color: #57B846;
+    border-radius: 15px 15px 0px 0px;
+    padding: 43px;
+    color: white;
+    font-weight: bold;
+}
+
+h5{
+	color: grey;
+}
+
+.green-bk{
+	background-color: #57B846;
+	color:white;
+}
+.green-font{
+	color:#57B846;
+}
+
+.footer{
+    margin-top: 11px;
+    padding-bottom: 32px;
+    font-size: 14px;
+}
+
+.first{
+    margin-top: 5px;
+}
+.signin{
+	margin: 6px;
+    margin-left: 0;    
+    padding: 13px 126px;
+    background-color: #57B846;
+    border: green;
+    border-radius: 21px;
+    font-weight: bold;
+    margin-top: -11px;
+}
+.forgotpass{
+    margin-top: 0px;
+    margin-left: 137px;
+}
+
+#space{
+	margin-bottom: -6px;
+    margin-top: 58px;
+}
+
+::placeholder { 
+  color: black;
+  opacity: 1; 
+}
+
+:-ms-input-placeholder { 
+  color: black;
+}
+
+::-ms-input-placeholder { 
+  color: black;
+}
+
+.button {
+    position: absolute;
+    top: 50%;
+}
