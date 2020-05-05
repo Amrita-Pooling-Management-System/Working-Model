@@ -1,0 +1,176 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html >
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Personal Dashboard</title>
+  <link rel="stylesheet" type="text/css" href="{% static 'css/fontawesome-free-5.8.1-web/css/all.css' %}">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link href="css/mdb.min.css" type="text/css" rel="stylesheet">
+  <link href="{% static 'css/style.css' %}" type="text/css" rel="stylesheet">
+  <script type="text/javascript" src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/popper.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/mdb.min.js' %}"></script>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+      <a href="#" class="navbar-brand text-warning">&nbsp;&nbsp;
+        Amrita Pooling Management System</a>
+
+
+
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+            <a href="/logout" class="nav-link">
+              <i class="fas fa-sign-out-alt"></i> Logout</a>
+          </li>
+        </ul>
+
+    </nav>
+
+    <div class=" py-3 text-white" style="background-color: teal">
+      <h1>&nbsp;&nbsp;<i class="fas fa-chart-bar"></i> Taxi Dashboard</h1>
+    </div>
+    <div class="bg-light p-2">
+
+  </div>
+  <div class="container-fluid">
+
+    <div class="row">
+      <div class="col-9">
+        <h2 style="background-color: grey ;" class="text-white p-3 ">Travel log</h2>
+        <div class="container">
+
+        <table class="table ">
+          <thead class="table-dark">
+            <tr>
+              <th>#</th>
+              <th>Src</th>
+              <th>Dest</th>
+              <th>Time</th>
+              <th>Date Posted</th>
+              <th>Status</th>
+              <th>Deatils</th>
+            </tr>
+          </thead>
+          <tbody>
+
+            <!-- <tag 1 begin> -->
+            {% for i in team %}
+            <tr>
+              <td>{{i.id}}</td>
+              <td>{{i.jid.source}}</td>
+              <td>{{i.jid.destination}}</td>
+              <td>{{i.jid.timefield}}</td>
+              <td>{{i.jid.datefield}}</td>
+               <td>{{i.jid.status}}</td>
+              <td><a href="#details" class="btn bg-warning btn-sm" onclick="location.href='{% url 'auto_view_with_pk' pk=i.teamid %}'"><a href="#details" data-toggle="modal"class="btn bg-warning btn-sm ">CheckThis>>></a>
+            </a></td>
+              <!-- <this is for the details part> -->
+                      <div class="modal fade show" id="details">
+                        <div class="modal-dialog">
+                          <div class="modal-content">
+                               <div class="modal-header bg-success text-white">
+                                  <h3> Complete Trip details </h3>
+                                    <span class="colse" data-dismiss="modal">
+                                     <i class="fa fa-window-close"></i>
+                                    </span>
+                               </div>
+                            <div class="p-4">
+                            {% for j in journey %}
+                            <div class="row"> &nbsp;&nbsp;<span>Name: &nbsp;<span name="tripon" placeholder="tripon">{{j.jid.profilename}} </span></span> &nbsp;&nbsp;
+<span>Ph_no: &nbsp;<span name="tripon" placeholder="tripon">{{j.jid.profilename.phone}} </span></span>
+                            </div>
+                            {% endfor %}
+                             <div class="modal-footer">
+
+                                <a href="" class="btn btn-success">Ok</a>
+                              </div>
+                           </div>
+                         </div>
+                       </div>
+
+                     </tr>
+                     {% endfor %}
+
+
+                    <!-- <that ends here > -->
+                      <!-- tag1 ends-->
+
+
+
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+          <div class="card mt-4">
+            <div class=" bg-dark text-white p-4 ">
+              <i class="fas fa-taxi fa-6x" style="margin-top:28px"></i>
+              <h2 class="float-right font-weight-bold" style="font-size: 50px; text-align: center;  padding:10px"> &nbsp<span class="d-block">Taxi details</span></h2>
+            </div>
+            <div class="card-footer ">
+              {% for pro in profile %}
+              <div class="row"> &nbsp;&nbsp;<span>Name: &nbsp;<span name="name" placeholder="name">{{pro.user}}</span></span></div>
+              <div class="row"> &nbsp;&nbsp;<span>Phone:&nbsp;<span name="number" placeholder="number">{{pro.phone}}</span></span></div>
+              <div class="row"> &nbsp;&nbsp;<span>E-Mail:&nbsp;<span name="mail" placeholder="mail">{{pro.email}}</span></span></div>
+              <div class="row"> &nbsp;&nbsp;<span>Taxi number:&nbsp;<span name="txinumber" placeholder="txinumber">{{pro.id}}</span></span></div>
+              {% endfor %}
+            <br>
+
+
+               <a href="#loginModal" class="btn btn-primary d-block font-weight-bold" data-toggle="modal" >
+          <i class="fas fa-plus"></i> &nbsp;Take Trip</a>
+          <!-- the button changes to assigning and the button has no activity at that time ... it basically waits till the algo returns values -->
+ <a class="btn btn-warning d-block font-weight-bold" >
+  <i class="fas spinner-border spinner-border-sm " style="size: 10px" role="status"></i> &nbsp;Assigning</a>
+            <!-- the button changes to assigned -->
+ <a class="btn btn-success d-block font-weight-bold"style="color: white" >
+  <i class="fa fa-check text-light"  role="status"></i> &nbsp;Assigned</a>
+<!--these are the button -->
+
+
+         <div class="modal fade show" id="loginModal">
+           <div class="modal-dialog">
+            <div class="modal-content">
+              <form action="">
+                <div class="modal-header bg-success text-white">
+                  <h3>Availability </h3>
+                  <span class="colse" data-dismiss="modal">
+                    <i class="fa fa-window-close"></i>
+                  </span>
+                </div>
+                <div class="modal-body">
+                  <div class="form-group">
+                    If you are ready to take trips continue with "Take Trip"
+                </div>
+                <div class="modal-footer">
+                  <a href="" class="btn btn-" data-dismiss="modal">busy</a>
+                  <form method="post">
+                    {% csrf_token %}
+                  <button href="" class="btn btn-success" formmethod="post" >Take trip</button>
+                </form>
+                </div>
+              </form>
+              </div>
+            </div>
+
+          </div>
+
+
+</div>
+
+
+            </div>
+          </div>
+      </div>
+
+
+
+</body>
+
+</html>

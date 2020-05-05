@@ -19,16 +19,16 @@
     <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
       <a href="#" class="navbar-brand text-warning">&nbsp;&nbsp;
         <img src="/home/p/Git/Software Project/frontend/taxi-xxl.png" width="50" height="50" alt=""> Amrita Pooling Management System</a>
-        
-      
-      
+
+
+
         <ul class="navbar-nav ml-auto">
             <li class="nav-item">
             <a href="/logout" class="nav-link">
               <i class="fas fa-sign-out-alt"></i> Logout</a>
           </li>
         </ul>
-    
+
     </nav>
 
     <div class=" py-3 text-white" style="background-color: teal">
@@ -38,8 +38,8 @@
 
   </div>
   <div class="container-fluid">
-    
-    <div class="row"> 
+
+    <div class="row">
       <div class="col-9">
         <h2 style="background-color: grey ;" class="text-white p-3 ">Travel log</h2>
         <div class="container">
@@ -58,17 +58,19 @@
           </thead>
           <tbody>
             {% for jou in journey %}
-            <tr>
+            <tr  >
               <td>{{jou.id}}</td>
               <td>{{jou.source}}</td>
               <td>{{jou.destination}}</td>
               <td>{{jou.timefield}}</td>
               <td>{{jou.datefield}}</td>
-               <td>{{jou.status}}</td> 
-              <td><a href="#details" class="btn bg-warning btn-sm " data-toggle="modal">
-                 check details >>> <i></i>
-              </a></td>
-              <div class="modal fade show" id="details">
+               <td>{{jou.status}}</td>
+                 <td>
+                    <a href="#details" class="btn bg-warning btn-sm" onclick="location.href='{% url 'home_view_with_pk' pk=jou.pk %}'"><a href="#details" data-toggle="modal"class="btn bg-warning btn-sm ">CheckThis>>></a>
+                  </a>
+               </td>
+
+              <div class="modal fade show" id="details" >
                 <div class="modal-dialog">
                   <div class="modal-content">
                        <div class="modal-header bg-success text-white">
@@ -77,9 +79,18 @@
                              <i class="fa fa-window-close"></i>
                             </span>
                        </div>
-                    <div class="p-4"> <br>Trip on : <br> trip time : <br> from-> to : <br> taxi number : <br >   </div>
+                    <div class="p-4">
+                      {% for tea in team %}
+                      <div class="row"> &nbsp;&nbsp;<span>Trip on: &nbsp;<span name="tripon" placeholder="tripon">{{tea.jid.datefield}}</span></span></div>
+                      <div class="row"> &nbsp;&nbsp;<span>trip time: &nbsp;<span name="triptime" placeholder="triptime">{{tea.arri}}</span></span></div>
+                      {% endfor %}
+                      {% for aut in auto %}
+                      <div class="row"> &nbsp;&nbsp;<span>Driver Name: &nbsp;<span name="dname" placeholder="dname">{{aut.user}}</span></span></div>
+                      <div class="row"> &nbsp;&nbsp;<span>Ph_No: &nbsp;<span name="pno" placeholder="pno">{{aut.phone}}</span></span></div>
+                      {% endfor %}
+                    </div>
                      <div class="modal-footer">
-                      
+
                         <a href="" class="btn btn-success">Ok</a>
                       </div>
                    </div>
@@ -88,12 +99,12 @@
             </tr>
 
             {% endfor %}
-            
+
           </tbody>
         </table>
       </div>
     </div>
-     
+
           <div class="card mt-4">
             <div class=" bg-warning text-white p-4 ">
               <i class="fas fa-male fa-6x"></i>
@@ -134,7 +145,7 @@
                      <input type="date" class="form-control" placeholder="date" name="date">
                    </div>
                     <div class="form-group">
- 
+
                      <input type="number" class="form-control" placeholder="number of people (including yourself)" min="1" max="4" name="nopeople">
                    </div>
                  </div>
@@ -145,12 +156,12 @@
                </form>
                </div>
              </div>
-           
-              
+
+
             </div>
           </div>
-      </div> 
-  
+      </div>
+
   </div>
 
 

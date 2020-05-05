@@ -18,7 +18,7 @@ class Profile(models.Model):
     signup_confirmation = models.BooleanField(default= False)
     def __str__(self):
         return self.user.username
-    
+
 @receiver(post_save,sender=User)
 def update_profile(sender,instance,created, **kwargws):
     if created:
@@ -31,30 +31,16 @@ class Journey(models.Model):
         ('KYJ','Kayamkulam'),
         ('KPI','Karunagapalli')
     )
-    STATUS = (
-        ('DONE','DONE'),
-        ('UPCO','Upcoming'),
-    )
     profilename = models.ForeignKey(User,on_delete = models.CASCADE)
     source= models.CharField(max_length=3,choices=PLACES)
     destination= models.CharField(max_length=3,choices=PLACES)
     datefield = models.DateField()
     timefield = models.TimeField()
     preference= models.IntegerField()
-    status = models.CharField(max_length=4,choices=STATUS)
+    status = models.CharField(max_length=100)
 
-class Driver(models.Model):
-    CATEGORIES = (
-        ('STUD','Student'),
-        ('DRIV','Driver'),
-    )
-    user = models.OneToOneField(User,on_delete=models.CASCADE)
-    first_name = models.CharField(max_length=100,blank=True)
-    last_name = models.CharField(max_length=100,blank=True)
-    email = models.CharField(max_length=150)
-    category = models.CharField(max_length=4,choices=CATEGORIES,default='STUD')
-    phone = models.CharField(max_length=10)
-    signup_confirmation = models.BooleanField(default= False)
-    def __str__(self):
-        return self.user.username
-    
+class Teams(models.Model):
+    jid=models.ForeignKey(Journey,on_delete=models.CASCADE)
+    pid=models.ForeignKey(Profile,on_delete=models.CASCADE)
+    arri = models.CharField(max_length=10,default='None')
+    teamid=models.IntegerField(default=0)
